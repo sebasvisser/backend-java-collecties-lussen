@@ -10,7 +10,7 @@ public class Bonus {
         HashSet<Integer> secretnumber = randomnumbergenerator();
         String stringnumber = setToStringConverter(secretnumber);
         System.out.println(stringnumber);
-        feedback(/*vul hier het juiste argument in*/);
+        feedback(stringnumber);
 
     }
 
@@ -27,20 +27,12 @@ public class Bonus {
     public static String setToStringConverter(HashSet<Integer> secretnumber){
         StringBuilder setBecameString = new StringBuilder();
         for (Integer number : secretnumber) {
-            setBecameString.append(number);
+            setBecameString.append(number).append(" ");
         }
         return setBecameString.toString().trim();
-        /*
-        Stappenplan:
-        - Maak als eerst een String variabele met als waarde een lege String. (of gebruik een StringBuilder)
-        - Schrijf vervolgens een for-loop om de items in de hashset een voor een aan de String variabele toe te voegen.
-        - Return de (gevulde) String variabele
-         */
     }
 
-
-
-    public static void/*moet dit "void" zijn of wat anders?*/ feedback(String stringnumber) {
+    public static void feedback(String stringnumber) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder feedback = new StringBuilder();
         System.out.println("+ = juiste nummer op de juiste plek, O = juiste nummer verkeerde plek, X = verkeerde nummer");
@@ -62,3 +54,10 @@ public class Bonus {
         System.out.println(feedback.toString());
     }
 }
+
+/*
+Waarom is HashSet niet handig:
+
+je kunt meteen 4 random getallen in een string zetten,
+hele HashSet stap kun je overslaan.
+*/
