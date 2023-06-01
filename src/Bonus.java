@@ -14,7 +14,7 @@ public class Bonus {
 
     }
 
-    public static HashSet<Integer> randomnumbergenerator(HashSet<Integer> secretnumber){
+    public static HashSet<Integer> randomnumbergenerator(){
         Random random = new Random();
         HashSet<Integer> hashSet = new HashSet<>();
         int i = 0;
@@ -24,10 +24,13 @@ public class Bonus {
         }return hashSet;
     }
 
-    public static void/*moet dit returntype "void" zijn of wat anders?*/ setToStringConverter(/*Heeft deze methode nog parameter(s) nodig?*/){
+    public static String setToStringConverter(HashSet<Integer> secretnumber){
+        StringBuilder setBecameString = new StringBuilder();
+        for (Integer number : secretnumber) {
+            setBecameString.append(number);
+        }
+        return setBecameString.toString().trim();
         /*
-        Vul hier de body van de methode in.
-
         Stappenplan:
         - Maak als eerst een String variabele met als waarde een lege String. (of gebruik een StringBuilder)
         - Schrijf vervolgens een for-loop om de items in de hashset een voor een aan de String variabele toe te voegen.
