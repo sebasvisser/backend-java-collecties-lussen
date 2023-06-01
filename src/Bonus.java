@@ -27,7 +27,7 @@ public class Bonus {
     public static String setToStringConverter(HashSet<Integer> secretnumber){
         StringBuilder setBecameString = new StringBuilder();
         for (Integer number : secretnumber) {
-            setBecameString.append(number).append(" ");
+            setBecameString.append(number);
         }
         return setBecameString.toString().trim();
     }
@@ -36,22 +36,35 @@ public class Bonus {
         Scanner scanner = new Scanner(System.in);
         StringBuilder feedback = new StringBuilder();
         System.out.println("+ = juiste nummer op de juiste plek, O = juiste nummer verkeerde plek, X = verkeerde nummer");
-        System.out.println("Doe een gok, Let op vul 4 getallen in.");
-        String guess = scanner.nextLine();
-        if (Objects.equals(guess, stringnumber)) {
-            System.out.println("gefeliciteerd je hebt het goed");
-        } else {
-            for (int i = 0; i < 4; i++) {
-                if (guess.substring(i, i + 1).equals(stringnumber.substring(i, i + 1))) {
-                    feedback.append("+");
-                } else if (stringnumber.contains(guess.substring(i, i + 1))) {
-                    feedback.append("0");
-                } else {
-                    feedback.append("X");
+
+        int maxAttempts = 5; // Aantal kansen om het te raden
+        int attempts = 0; // Aantal pogingen gedaan
+
+        while (attempts < maxAttempts) {
+            attempts++;
+
+            System.out.println("Doe een gok. Let op, vul 4 getallen in.");
+            String guess = scanner.nextLine();
+
+            if (Objects.equals(guess, stringnumber)) {
+                System.out.println("Gefeliciteerd, je hebt het goed!");
+                return;
+            } else {
+                feedback.setLength(0); // Feedback leegmaken na poging
+
+                for (int i = 0; i < 4; i++) {
+                    if (guess.substring(i, i + 1).equals(stringnumber.substring(i, i + 1))) {
+                        feedback.append("+");
+                    } else if (stringnumber.contains(guess.substring(i, i + 1))) {
+                        feedback.append("O");
+                    } else {
+                        feedback.append("X");
+                    }
                 }
+                System.out.println(feedback.toString());
             }
         }
-        System.out.println(feedback.toString());
+        System.out.println("Helaas, je hebt geen juist antwoord geraden. Het juiste antwoord was: " + stringnumber);
     }
 }
 
